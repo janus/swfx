@@ -8,17 +8,17 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(staticCacheName).then((cache) => {
       return cache.addAll([
-        '/',
-        '/js/main.js',
-        '/css/styles.css',
-        '/imgs/icon.png',
+        './',
+        './public/js/main.js',
+        './css/styles.css',
+        './imgs/icon.png',
 
-        '/currencies.json'
+        './server/currencies.json'
       ]);
     })
   );
 });
-
+//
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {

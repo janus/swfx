@@ -1,6 +1,6 @@
 import IndexController from './IndexController';
 //const COUNTRIESURL = '/countries.json';
-const CURRENCIESURL = '/currencies.json';
+const CURRENCIESURL = '/server/currencies.json';
 const mmap = {'to_currency_select_id':'currency_input_1', 
               'from_currency_select_id':'currency_input_2'}; 
 const dmap = {'to_currency_select_id':'currency_input_2', 
@@ -9,7 +9,7 @@ const dmap = {'to_currency_select_id':'currency_input_2',
 let mcompute;
 
 
-export class Compute {
+class Compute {
     constructor(){
         //this._countries = this.lfetch(COUNTRIESURL)['results'];
         this._currencies = this.lfetch(CURRENCIESURL)['results'];
@@ -105,10 +105,11 @@ export class Compute {
     let vl, url,
         rst = this._cuList.join('-'),
         storeVal = await this._indexController.getDB(rst);
+        let page = `https://free.currencyconverterapi.com/api/v3/convert?q=${this._cuList[0]}_${this._cuList[1]},${this._cuList[1]}_${this._cuList[0]}&compact=ultra`;
     if (!storeVal){
         try {
-            url = `/currencies/${rst}`;
-            vl = await this._fetchUrl(url);
+            //url = `/currencies/${rst}`;
+            vl = await this._fetchUrl(page);
             if (!vl) {
                 throw new Error();
             }

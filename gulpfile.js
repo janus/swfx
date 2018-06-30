@@ -22,9 +22,9 @@ gulp.task('clean', (done) => del(['build'], done));
 gulp.task('copy', () => {
   return mergeStream(
     gulp.src('public/imgs/**/*').pipe(gulp.dest('build/public/imgs/')),
-    gulp.src('public/*.json').pipe(gulp.dest('build/public/')),
+    gulp.src('public/**/*.json').pipe(gulp.dest('build/public')),
     gulp.src('server/**/*.json').pipe(gulp.dest('build/server')),
-    gulp.src('public/html/**/*.html').pipe(gulp.dest('build/public/html'))
+    gulp.src('public/html/**/*.html').pipe(gulp.dest('build'))
   );
 });
 

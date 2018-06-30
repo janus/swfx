@@ -16,13 +16,13 @@ export default class Server {
             maxAge: 0
         };
         this._app.use('/css', express.static(path.join(__dirname, '../css'), staticOptions));
-        this._app.use('/js', express.static(path.join(__dirname, '../public/js'), staticOptions));
+        this._app.use('/public/js', express.static(path.join(__dirname, '../public/js'), staticOptions));
         this._app.use('/imgs', express.static('../public/imgs', staticOptions));
         this._app.use('/sw.js', (req, res) => res.sendFile(path.resolve('../sw.js'), staticOptions));
-        this._app.use('/sw.js.map', (req, res) => res.sendFile(path.resolve('../public/sw.js.map'), staticOptions));
-        this._app.use('/manifest.json', (req, res) => res.sendFile(path.resolve('../public/manifest.json'), staticOptions));
-        this._app.get('/countries.json', (req, res) => res.send(countries));
-        this._app.get('/currencies.json', (req, res) => res.send(currencies));
+       // this._app.use('/sw.js.map', (req, res) => res.sendFile(path.resolve('../public/sw.js.map'), staticOptions));
+        this._app.use('/public/manifest.json', (req, res) => res.sendFile(path.resolve('../public/manifest.json'), staticOptions));
+        this._app.get('/server/countries.json', (req, res) => res.send(countries));
+        this._app.get('/server/currencies.json', (req, res) => res.send(currencies));
         this._app.get('/currencies/:from-:to', (req, res) => { 
 
         let page = `https://free.currencyconverterapi.com/api/v3/convert?q=${req.params.from}_${req.params.to},${req.params.to}_${req.params.from}&compact=ultra`;
@@ -48,7 +48,7 @@ export default class Server {
         //res.send(content);
         
         });
-        this._app.get('/',  (req, res) => res.sendFile(path.join(__dirname, '../public/html', 'index.html')));    
+        this._app.get('/',  (req, res) => res.sendFile(path.join(__dirname, '../', 'index.html')));    
     }
     
     startServer(){
