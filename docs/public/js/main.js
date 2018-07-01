@@ -503,16 +503,16 @@ var Compute = function () {
             var currencies = [];
             var val = void 0;
             //console.log(this._currencies);
-            var bb = await this.lfetch(CURRENCIESURL);
+            var fetched = await this.lfetch(CURRENCIESURL);
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
             var _iteratorError = undefined;
 
             try {
-                for (var _iterator = Object.keys(bb)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                for (var _iterator = Object.keys(fetched).sort()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                     var ky = _step.value;
 
-                    val = bb[ky];
+                    val = fetched[ky];
                     var tmpl = '<option value="' + val['id'] + '">' + val['currencyName'] + '</option>';
                     currencies.push(tmpl);
                 }

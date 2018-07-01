@@ -17,14 +17,14 @@ const babelify = require('babelify');
 
 const args = process.argv.slice(3);
 
-gulp.task('clean', (done) => del(['build'], done));
+gulp.task('clean', (done) => del(['docs'], done));
 
 gulp.task('copy', () => {
   return mergeStream(
-    gulp.src('public/imgs/**/*').pipe(gulp.dest('build/public/imgs/')),
-    gulp.src('public/**/*.json').pipe(gulp.dest('build/public')),
-    gulp.src('server/**/*.json').pipe(gulp.dest('build/server')),
-    gulp.src('public/html/**/*.html').pipe(gulp.dest('build'))
+    gulp.src('public/imgs/**/*').pipe(gulp.dest('docs/public/imgs/')),
+    gulp.src('public/**/*.json').pipe(gulp.dest('docs/public')),
+    gulp.src('server/**/*.json').pipe(gulp.dest('docs/server')),
+    gulp.src('public/html/**/*.html').pipe(gulp.dest('docs'))
   );
 });
 
@@ -33,28 +33,25 @@ gulp.task('css', () => {
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(sourcemaps.write('./maps'))
-        .pipe(gulp.dest('build/css'))
-})
+        .pipe(gulp.dest('docs/css'))
+});
 
 
 
 const bundleBuild = ([originUrl, newUrl, newLocation] ) => {
-    console.log(newLocation);
     return browserify(originUrl)
       //.pipe(watchify())
-      .transform(babelify.configure({
-    presets: ['es2016', 'es2015']
-  }))
-      .bundle()
+        .transform(babelify.configure({presets: ['es2016', 'es2015']}))
+        .bundle()
       
-      .pipe(source(newUrl))
-      .pipe(gulp.dest(newLocation));
+        .pipe(source(newUrl))
+        .pipe(gulp.dest(newLocation));
     
 }
 gulp.task('js:browser', () => {
    
-    [['public/js/main/index.js','main.js','build/public/js' ],
-     ['public/js/sw/sw.js','sw.js','build']
+    [['public/js/main/index.js','main.js','docs/public/js' ],
+        ['public/js/sw/sw.js','sw.js','docs']
     ].forEach(item => bundleBuild(item)); 
 
 });
@@ -70,15 +67,16 @@ gulp.task('js:server', () => {
     .pipe(sourcemaps.init())
     .pipe(babel({presets:['env']}))
     .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest('build/server'));
+    .pipe(gulp.dest('docs/server'));
 });
  
 // run server
 gulp.task( 'server', () => {
-    server.listen( { path: './index.js' , cwd:'./build/server/', args: args } );
-    gulp.watch(['build/server/**/*.js'], server.restart );
+    server.listen( { path: './index.js' , cwd:'./docs/server/', args: args } );
+    gulp.watch(['server/**/*.js'], server.restart );
 });
 
 gulp.task('serve', (callback) => {
   runSequence('clean', ['css', 'js:server',  'js:browser', 'copy'], ['server', 'watch'], callback);
 });
+

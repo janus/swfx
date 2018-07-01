@@ -1,4 +1,4 @@
-const staticCacheName = 'olfx-static-v10';
+const staticCacheName = 'swfx-static-v10';
 //r contentRatesCache = 'olfx-content-rates';
 const allCaches = [
   staticCacheName

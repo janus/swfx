@@ -1,6 +1,4 @@
-# swfx
-
-Online/Offline Foreign Currencies Converter
+# Online/Offline Foreign Currencies Converter
 
 Purpose:
 ---
@@ -19,8 +17,7 @@ Setup:
 2. cd into repo
 3. npm install
 4. gulp serve
-5. npm install
-6. visit http://localhost:8000/
+5. visit http://localhost:8000/
 
 Installing Sass may cause a couple of issues, the below may solve some of the issues;
 
@@ -31,7 +28,7 @@ Try:
 ----
 Visit the below link
 
-https://janus.github.io/
+https://janus.github.io/swfx/
 
 
 NOTE:
@@ -42,7 +39,7 @@ It runs on API provided by https://www.currencyconverterapi.com/
 
 Important information:
 ----
-Don't use the result for financial transactions
+Don't use the result for financial transactions.
 
 
 
