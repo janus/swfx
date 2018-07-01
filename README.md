@@ -1,16 +1,16 @@
-# Online/Offline Foreign Currencies Converter
+## Online/Offline Foreign Currencies Converter
 
-Purpose:
+### Purpose:
 ---
 Converts one currency to another
 
-Requirements:
+### Requirements:
 ----
 1. Node 8 or greater
 2. npm 5.6.0 or greater
 
 
-Setup:
+### Setup:
 ----
 
 1. clone repo
@@ -24,20 +24,22 @@ Installing Sass may cause a couple of issues, the below may solve some of the is
 sudo npm i --unsafe-perm=true --allow-root
 
 
-Try:
+### Try:
 ----
-Visit the below link
+Visit any of the below links
+
+https://janus.github.io
 
 https://janus.github.io/swfx/
 
 
-NOTE:
+### NOTE:
 ---
 It runs on API provided by https://www.currencyconverterapi.com/
 
 
 
-Important information:
+### Important information:
 ----
 Don't use the result for financial transactions.
 
